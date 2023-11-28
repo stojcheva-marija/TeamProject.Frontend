@@ -1,6 +1,7 @@
 import { logout, userAuthenticated, userAuthenticatedError} from '../app/authenticationSlice';
 import { newProduct, editProduct, clearCart, setProductsError, deleteProduct, newProductError, deleteProductError, editProductError, addToCart, deleteFromShoppingCart, deleteFromShoppingCartError, addToCartError,  setShoppingCartError, addToFavourites, addToFavouritesError, deleteFromFavourites, deleteFromFavouritesError} from '../app/productsSlice';
 import { toast } from 'react-toastify';
+import { editMyProfilePasswordError, editMyProfile, editMyProfileError } from '../app/userSlice';
 
 // function in function
 // next --> we pass to the next middles in the pipeline, we return next, so we give it to the next
@@ -65,7 +66,17 @@ const ToastMiddleware = () => next => action => {
             break;             
         case clearCart.type:
             toast.success("Ordered successfully");
-            break;    
+            break;   
+        case editMyProfile.type:
+            toast.success("User profil edited successfully");
+            break;                
+        case editMyProfileError.type:
+            toast.error("Error while editing the profile");
+            break;  
+        
+        case editMyProfilePasswordError.type:
+            toast.error("Incorrect password");
+            break;      
         default:
             break;
     }
