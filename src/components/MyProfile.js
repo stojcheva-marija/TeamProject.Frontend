@@ -3,41 +3,86 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button, FormLabel, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { GetMyProfile } from '../services/user';
 import { NavLink } from 'react-router-dom';
-import { EditMyProfile } from '../services/user';
+import { EditMyProfile, ChangePassword } from '../services/user';
 
 const MyProfile = () => {
   const myProfile = useSelector((state) => state.userSlice.myProfile);
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [editedProfile, setEditedProfile] = useState(null);
+  const [showEditConfirmationModal, setShowEditConfirmationModal] = useState(false);
+  const [showChangePasswordConfirmationModal, setShowChangePasswordConfirmationModal] = useState(false);
   const [password, setPassword] = useState('');
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [repeatNewPassword, setRepeatNewPassword] = useState('');
+  const [hasValidationErrorEditProfile, sethasValidationErrorEditProfile] = useState(false);
+  const [hasValidationErrorChangePassword, sethasValidationErrorChangePassword] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(true);
     setEditedProfile({ ...myProfile }); 
   };
 
-    const openConfirmationModal = () => {
-      setShowConfirmationModal(true);
+    const openEditConfirmationModal = () => {
+      setShowEditConfirmationModal(true);
     };
   
-    const closeConfirmationModal = () => {
-      setShowConfirmationModal(false);
+    const closeEditConfirmationModal = () => {
+      setShowEditConfirmationModal(false);
     };
 
-  const handleEditSave = () => {
-    openConfirmationModal();
-  }
-
-  const handleSave = () => {
-    if (showConfirmationModal) {
-      EditMyProfile(dispatch, editedProfile, password);
-      setIsEditing(false);
-      closeConfirmationModal();
+  const handleConfirmEditSave = () => {
+    if(editedProfile.username!=="" && editedProfile.email!=="" & editedProfile.name!=="" & editedProfile.surname!=="" & editedProfile.phone!=="" & editedProfile.address!=="" & editedProfile.postalCode!=="" & password!=="")
+    {openEditConfirmationModal();
+      sethasValidationErrorEditProfile(false);}
+    else{
+      sethasValidationErrorEditProfile(true);
     }
   }
+
+  const handleEditSave = () => {
+    if (showEditConfirmationModal) {
+      EditMyProfile(dispatch, editedProfile, password);
+      setIsEditing(false);
+      closeEditConfirmationModal();
+    }
+  }
+
+  const handleChangePassword = () => {
+    setIsChangingPassword(true);
+    setCurrentPassword('');
+    setNewPassword('');
+    setRepeatNewPassword('');
+  };
+
+  const openChangePasswordConfirmationModal = () => {
+    setShowChangePasswordConfirmationModal(true);
+  };
+
+  const closeChangePasswordConfirmationModal = () => {
+    setShowChangePasswordConfirmationModal(false);
+  };
+
+const handleConfirmChangePasswordSave = () => {
+  if(currentPassword !== "" && newPassword !== "" && repeatNewPassword !== "")
+ {openChangePasswordConfirmationModal();
+  sethasValidationErrorChangePassword(false);;}
+  else
+  sethasValidationErrorChangePassword(true);
+}
+
+const handleChangePasswordSave = () => {
+  if (showChangePasswordConfirmationModal) {
+    ChangePassword(dispatch, currentPassword, newPassword, repeatNewPassword);
+    setIsChangingPassword(false);
+    closeChangePasswordConfirmationModal();
+  }
+}
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -96,10 +141,11 @@ const MyProfile = () => {
           <p>Postal code: {myProfile.postalCode}</p>
           <p>Rating: {renderStars(myProfile.rating)} ({myProfile.rating})</p>
           <p>Rated by: {myProfile.ratingCount} users</p>
-          <Button variant="dark" onClick={handleEdit}>Edit Profile</Button>
+          <Button onClick={handleEdit} className="m-2 btn btn-dark">Edit Profile</Button>
+          <Button onClick={handleChangePassword} className="m-2 btn btn-dark">Change password</Button>
           {myProfile.comments && myProfile.comments.length > 0 && (
     <div style={{margin: 'auto', textAlign: 'center'}}>
-      <Button variant="dark" style={{margin: '5px'}} onClick={openCommentModal}>
+      <Button className="btn btn-dark" onClick={openCommentModal}>
         View All Comments
       </Button>
       <NavLink  style={{margin: '5px'}}className="btn btn-dark" to={`/myProducts`}> View My Products</NavLink>
@@ -265,17 +311,22 @@ const MyProfile = () => {
     )}
   </Modal.Body>
   <Modal.Footer>
-    <Button variant="dark" onClick={handleEditSave}>
+    <Button variant="dark" onClick={handleConfirmEditSave}>
       Save Changes
     </Button>
     <Button variant="secondary" onClick={() => setIsEditing(false)}>
       Cancel
     </Button>
+    {hasValidationErrorEditProfile && (
+          <div style={{ color: 'red', fontWeight: 'bold', marginTop: '10px'}}>
+            Please fill all the required fields.
+          </div>
+        )}
   </Modal.Footer>
 </Modal>
 
- {/* Confirmation Modal */}
- <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
+ {/* Confirmation Edit Modal */}
+ <Modal show={showEditConfirmationModal} onHide={closeEditConfirmationModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
@@ -283,18 +334,95 @@ const MyProfile = () => {
           Are you sure you want to save the changes?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" onClick={handleSave}>
+          <Button variant="dark" onClick={handleEditSave}>
             Confirm
           </Button>
-          <Button variant="secondary" onClick={closeConfirmationModal}>
+          <Button variant="secondary" onClick={closeEditConfirmationModal}>
             Cancel
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
 
-    
-  
+    {/* Change Password Modal */}
+         <Modal show={isChangingPassword} onHide={() => setIsChangingPassword(false)}>
+         <Modal.Header closeButton>
+           <Modal.Title>Change Password</Modal.Title>
+         </Modal.Header>
+         <Modal.Body>
+           <FormLabel>Current Password</FormLabel>
+           <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip><span>Required field</span></Tooltip>}
+                >
+                 <span style={{ fontSize: '18px', cursor: 'pointer', marginLeft: '10px', color: 'red' }}>*</span>
+                </OverlayTrigger>
+           <Form.Control
+             type="password"
+             name="currentPassword"
+             value={currentPassword}
+             onChange={(e) => setCurrentPassword(e.target.value)}
+           />
+           <FormLabel>New Password</FormLabel>
+           <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip><span>Required field</span></Tooltip>}
+                >
+                 <span style={{ fontSize: '18px', cursor: 'pointer', marginLeft: '10px', color: 'red' }}>*</span>
+                </OverlayTrigger>
+           <Form.Control
+             type="password"
+             name="newPassword"
+             value={newPassword}
+             onChange={(e) => setNewPassword(e.target.value)}
+           />
+           <FormLabel>Repeat New Password</FormLabel>
+           <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip><span>Required field</span></Tooltip>}
+                >
+                 <span style={{ fontSize: '18px', cursor: 'pointer', marginLeft: '10px', color: 'red' }}>*</span>
+                </OverlayTrigger>
+           <Form.Control
+             type="password"
+             name="repeatNewPassword"
+             value={repeatNewPassword}
+             onChange={(e) => setRepeatNewPassword(e.target.value)}
+           />
+         </Modal.Body>
+         <Modal.Footer>
+        <Button variant="dark" onClick={handleConfirmChangePasswordSave}>
+          Save Changes
+        </Button>
+        <Button variant="secondary" onClick={() => setIsChangingPassword(false)}>
+          Cancel
+        </Button>
+        {hasValidationErrorChangePassword && (
+          <div style={{ color: 'red', fontWeight: 'bold', marginTop: '10px' }}>
+            Please fill all the required fields.
+          </div>
+        )}
+      </Modal.Footer>
+       </Modal>
+
+       <Modal show={showChangePasswordConfirmationModal} onHide={closeChangePasswordConfirmationModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to save the changes?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="dark" onClick={handleChangePasswordSave}>
+            Confirm
+          </Button>
+          <Button variant="secondary" onClick={closeChangePasswordConfirmationModal}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+     </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import { logout, userAuthenticated, userAuthenticatedError} from '../app/authenticationSlice';
 import { newProduct, editProduct, clearCart, setProductsError, deleteProduct, newProductError, deleteProductError, editProductError, addToCart, deleteFromShoppingCart, deleteFromShoppingCartError, addToCartError,  setShoppingCartError, addToFavourites, addToFavouritesError, deleteFromFavourites, deleteFromFavouritesError} from '../app/productsSlice';
 import { toast } from 'react-toastify';
-import { editMyProfilePasswordError, editMyProfile, editMyProfileError } from '../app/userSlice';
+import { editMyProfilePasswordError, editMyProfile, editMyProfileError, successPasswordChange, invalidOldPasswordError, passwordChangeError, passwordsDoNotMatchError } from '../app/userSlice';
 
 // function in function
 // next --> we pass to the next middles in the pipeline, we return next, so we give it to the next
@@ -44,7 +44,7 @@ const ToastMiddleware = () => next => action => {
             toast.error('Error adding product to cart')
             break;
         case userAuthenticated.type:
-            toast.success("User authenticated successfully");
+            toast.success("Logged in successfully");
             break;
         case logout.type:
             toast.success("Logged out");
@@ -76,7 +76,24 @@ const ToastMiddleware = () => next => action => {
         
         case editMyProfilePasswordError.type:
             toast.error("Incorrect password");
-            break;      
+            break; 
+            
+        case successPasswordChange.type:
+            toast.success('Password changed successfully');
+            break;  
+
+        case invalidOldPasswordError.type:
+            toast.error('Invalid old password');
+            break;
+
+        case passwordsDoNotMatchError.type:
+            toast.error('New passwords do not match');
+            break;
+
+        case passwordChangeError.type:
+            toast.error('An error occurred while changing the password');
+            break;
+        
         default:
             break;
     }

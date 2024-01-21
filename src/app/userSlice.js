@@ -2,6 +2,10 @@ import { createSlice, createAction } from '@reduxjs/toolkit';
 
 export const editMyProfilePasswordError = createAction('editMyProfilePasswordError');
 export const editMyProfileError = createAction('editMyProfileError');
+export const successPasswordChange = createAction('successPasswordChange');
+export const invalidOldPasswordError = createAction('invalidOldPasswordError')
+export const passwordsDoNotMatchError = createAction('passwordsDoNotMatchError')
+export const passwordChangeError = createAction('passwordChangeError')
 
 const initialState = {
   myProfile: [],
