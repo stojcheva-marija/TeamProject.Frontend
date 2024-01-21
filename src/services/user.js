@@ -1,6 +1,7 @@
-import { setMyProfile, editMyProfile, editMyProfilePasswordError } from "../app/userSlice";
+import { setMyProfile, editMyProfile, editMyProfilePasswordError, successPasswordChange, invalidOldPasswordError, passwordChangeError, passwordsDoNotMatchError } from "../app/userSlice";
 import axios from "axios";
-
+import { logout } from '../app/authenticationSlice';
+import { toast } from 'react-toastify';
 
 const axiosInstance = axios.create({
     baseURL: `${process.env.REACT_APP_BASE_URL}/User`,
@@ -32,12 +33,7 @@ export const EditMyProfile = async (dispatch, profile, password) => {
         if (error.response && error.response.status === 400) {
             const responseData = error.response.data;
             if (responseData.error === 'InvalidPassword') {
-                console.error('Invalid password. Please try again.');
                 dispatch(editMyProfilePasswordError());
-            } else if (responseData.error === 'EmailAlreadyExists') {
-                console.error('Email already exists.');
-            } else if (responseData.error === 'UsernameAlreadyExists') {
-                console.error('Username already exists.');
             } else {
                 console.error('An error occurred while editing the profile:', error);
             }
@@ -45,4 +41,32 @@ export const EditMyProfile = async (dispatch, profile, password) => {
             console.error('An unexpected error occurred:', error);
         }
     }
+}
+
+export const ChangePassword = async (dispatch, oldPassword, newPassword, repeatNewPassword) => {
+    try {
+        const requestBody = {
+          OldPassword: oldPassword,
+          NewPassword: newPassword,
+          RepeatNewPassword: repeatNewPassword,
+        };
+
+        await axiosInstance.post('', requestBody);
+        dispatch(successPasswordChange())
+        dispatch(logout());
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          const responseData = error.response.data;
+          console.log(responseData.message)
+          if (responseData.message === 'Invalid old password.') {
+            dispatch(invalidOldPasswordError())
+          } else if (responseData.message === 'New passwords do not match.') {
+            dispatch(passwordsDoNotMatchError())
+          } else {
+            dispatch(passwordChangeError())
+          }
+        } else {
+          console.error('An unexpected error occurred:', error);
+        }
+      }
 }
