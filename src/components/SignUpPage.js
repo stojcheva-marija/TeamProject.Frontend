@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col, FormLabel, FormControl, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { SignUp } from '../services/authentication';
 import { useDispatch } from 'react-redux';
+import './styles/SignUpPage.css'
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -16,39 +17,6 @@ const SignUpPage = () => {
   const [postalCode, setPostalCode] = useState('');
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-
-  const styles = `
-  .error-container {
-    color: red;
-    margin-bottom: 20px;
-    margin-left: 20px;
-  }
-  
-  .error-message {
-    margin-top: 5px;
-  }
-  
-  .input-field {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .input-field label {
-    flex: 1;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .input-field input,
-  .input-field select {
-    flex: 2;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  `;
 
   const formatFieldName = (fieldName) => {
     return fieldName
@@ -114,7 +82,7 @@ const SignUpPage = () => {
 
   return (
     <div style={{ width: '30rem', margin: 'auto', padding: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '30px' }}>
-        <style>{styles}</style>
+        <style></style>
       <Form onSubmit={handleSubmit}>
         <h4 style={{ textAlign: 'center' }}>Create an account</h4>
         <Row className="input-field">

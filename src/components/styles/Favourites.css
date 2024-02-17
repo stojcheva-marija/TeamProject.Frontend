@@ -1,0 +1,90 @@
+body{
+    min-height: 100vh;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.title{
+    margin-bottom: 5vh;
+}
+.card{
+    margin: auto;
+    margin-top: 30px;
+    width: 80%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+.cart{
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+.row{
+    margin: 0;
+}
+.title b{
+    font-size: 1.5rem;
+}
+.main{
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+.col-2, .col{
+    padding: 0 1vh;
+}
+a{
+    padding: 0 1vh;
+}
+.close{
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+img{
+    width: 3.5rem;
+}
+.back-to-shop{
+    margin-top: 4.5rem;
+}
+h5{
+    margin-top: 4vh;
+}
+input:focus::-webkit-input-placeholder
+{
+      color:transparent;
+}
+.btn{
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 1vh;
+    border-radius: 0;
+}
+
+.your-selector {
+    user-select: none; /* or auto, text, etc. */
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    transition: none; 
+}
+.btn:hover{
+    color: white;
+}
+
+.btn {
+    padding: 5px 15px; /* Adjust padding to make buttons narrower */
+    border-radius: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }

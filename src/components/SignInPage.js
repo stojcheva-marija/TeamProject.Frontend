@@ -3,7 +3,7 @@ import { Form, Button, FormControl, Row, FormLabel, Col } from 'react-bootstrap'
 import { SignIn } from '../services/authentication';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import './styles/SignInPage.css'
 
 const SignInPage = () => {
     const [email, setEmail] = useState('');
@@ -11,29 +11,6 @@ const SignInPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-
-
-    const styles = `
-        .input-field {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-          }
-          
-          .input-field label {
-            flex: 1;
-            font-weight: bold;
-            margin-right: 10px;
-          }
-          
-          .input-field input,
-          .input-field select {
-            flex: 2;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-          }
-        `;
 
     return (
     <div style={{
@@ -43,7 +20,7 @@ const SignInPage = () => {
         minHeight: '70vh', 
       }}>
     <div style={{ width: '30rem', margin: 'auto', padding: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '30px' }}>
-        <style>{styles}</style>
+        <style></style>
         <Form
         onSubmit={event => {
           event.preventDefault();

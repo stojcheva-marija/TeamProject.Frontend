@@ -6,6 +6,8 @@ import * as React from 'react';
 import { CompactPicker } from 'react-color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShirt,faSocks,faGem,} from '@fortawesome/free-solid-svg-icons';
+import "./styles/ProductAdd.css"
+
 
 const ProductAdd = () => {
   const [name, setName] = useState('');
@@ -201,68 +203,8 @@ const ProductAdd = () => {
     Clothes:faShirt ,
     Shoes: faSocks,
     Accessories: faGem
-    // Add more product types and icons as needed
   };
 
-
-const styles = `
-.error-container {
-  color: red;
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
-
-.error-message {
-  margin-top: 5px;
-}
-
-.input-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.input-field label {
-  flex: 1;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.input-field input,
-.input-field select {
-  flex: 2;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%
-}
-
-.product-type-icon.highlight {
-  border: 7px solid #000000;
-  margin: 500px; /* Add margin here to create space around the highlighted icon */
-}
-
-.product-type-icon-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 40px;
-  marginBottom: 40px;
-}
-
-.product-type-label {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.wider-modal .modal-dialog {
-  max-width: 70%; /* Adjust the width as needed */
-  margin-top: 100px;
-}
-
-`;
 
   
   return (
@@ -274,7 +216,7 @@ const styles = `
         minHeight: '70vh', // Set the minimum height to fill the viewport
       }}
     >
-      <style>{styles}</style>
+      
     <Form>
       <Row>
         <Col>

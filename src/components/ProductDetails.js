@@ -8,7 +8,7 @@ import { setSelectedFilters } from '../app/productsSlice';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck, faTruckFast, faRotateLeft, faBox, faArrowLeft  } from '@fortawesome/free-solid-svg-icons';
-
+import "./styles/ProductDetails.css"
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -86,81 +86,9 @@ const ProductDetails = () => {
 
   const displayCondition = splitCamelCase(product.productCondition);
 
-  const styles = `
-  .breadcrumb>li+li:before {
-    content: "" !important;
-}
-
-.breadcrumb {
-  padding: 25px;
-  font-size: 14px;
-  color: #aaa !important;
-  letter-spacing: 2px;
-  border-radius: 5px !important;
-}
-
-a {
-    text-decoration: none !important;
-}
-
-a:focus,
-a:active {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-img {
-    vertical-align: bottom;
-}
-
-.first span {
-    color: black;
-}
-
-.breadcrumb-item-content {
-  display: flex;
-  align-items: center;
-}
-
-.active-1  , .active-2{
-    font-size: 13px !important;
-    padding-bottom: 12px !important;
-    padding-top: 12px !important;
-    padding-right: 25px !important;
-    padding-left: 25px !important;
-    border-radius: 200px !important;
-    background-color: #C2A4C8  !important;
-    color: black;
-}
-
-.card{border:none}
-.product{background-color: #eee}
-.brand{font-size: 13px}
-.act-price{font-weight: 700}
-.about{font-size: 14px}
-.btn-dark:hover{background-color: gray !important;}
-.btn-dark:focus{box-shadow: none}
-.cart i{margin-right: 10px}
-  
-.nav-pills .nav-link {
-  background-color: white; /* Dark background color */
-  color: black; /* Light text color */
-}
-
-.nav-pills .nav-link.active {
-  background-color: black;
-  color: white; 
-}
-
-.main-container {
-  background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
-  padding: 20px; /* Add padding for spacing */
-}`
-;
 
   return (
     <div className="container mt-5 mb-5 main-container">
-      <style>{styles}</style>
   <div class="container d-flex mt-4"> 
    <nav aria-label="breadcrumb " class="first  d-md-flex">
     <ol class="breadcrumb indigo mb-5">

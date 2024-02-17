@@ -1,0 +1,10 @@
+  .product-table-body {
+    align-items: center; /* Align content horizontally */
+  }
+  
+  .product-table-body tr {
+
+    justify-content: space-between; /* Distribute content evenly within rows */
+    align-items: center; /* Align content vertically within rows */
+    margin-bottom: 10px; /* Add spacing between rows */
+  }

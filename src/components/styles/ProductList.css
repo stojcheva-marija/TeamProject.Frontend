@@ -1,0 +1,132 @@
+
+.breadcrumb>li+li:before {
+    content: "" !important;
+}
+
+.breadcrumb {
+  padding: 25px;
+  font-size: 14px;
+  color: #aaa !important;
+  letter-spacing: 2px;
+  border-radius: 5px !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:focus,
+a:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+.first span {
+    color: black;
+}
+
+.breadcrumb-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.active-1  , .active-2{
+    font-size: 13px !important;
+    padding-bottom: 12px !important;
+    padding-top: 12px !important;
+    padding-right: 25px !important;
+    padding-left: 25px !important;
+    border-radius: 200px !important;
+    background-color: #C2A4C8  !important;
+    color: black;
+}
+
+
+
+#sidebar {
+  width: 100%;
+  min-height: 30vh; /* Set the minimum height to cover the entire viewport height */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Align content at the top */
+  align-items: center; /* Center horizontally */
+  margin: 10px;
+}
+
+/* Additional styling for the content within the sidebar */
+#sidebar-content {
+  width: 100%;
+  max-width: 80%; 
+}
+
+#sidebar-content .row {
+  margin-bottom: 15px;
+}
+
+#sidebar-content button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+/* Styles for individual page item */
+.page-item {
+  margin: 0 5px;
+}
+
+/* Styles for page links */
+.page-link {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styles for active page */
+.page-item.active .page-link {
+  background-color: white;
+  color: black;
+}
+
+/* Styles for disabled page */
+.page-item.disabled .page-link {
+  color: gray;
+  pointer-events: none;
+}
+
+/* Styles for previous and next links */
+.page-item.previous .page-link,
+.page-item.next .page-link {
+  background-color: black;
+  color: white;
+}
+
+/* Styles for previous and next icons */
+.page-item.previous .page-link::before,
+.page-item.next .page-link::before {
+  content: "\\2039"; /* Unicode for left-pointing arrow (‹) and right-pointing arrow (›) */
+  font-size: 14px;
+}
+
+.page-item.next .page-link::before {
+  content: "\\203A";
+}
+.main-container {
+  background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
+  padding: 20px; /* Add padding for spacing */
+}

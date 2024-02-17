@@ -1,0 +1,9 @@
+
+.sold-product {
+    opacity: 0.6; /* Reduce opacity for sold products */
+  }
+  
+  .sold-message {
+    color: red;
+    font-weight: bold;
+  }

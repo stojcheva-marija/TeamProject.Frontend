@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { setProfile } from '../app/userSlice';
 import { Modal, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import './styles/Profile.css'
 
 const Profile = () => {
   const { username } = useParams();
@@ -71,21 +72,11 @@ const Profile = () => {
     fetchProfile();
   }, [dispatch, username]);
 
-  const styles = `
-  .product-table-body {
-    align-items: center; /* Align content horizontally */
-  }
   
-  .product-table-body tr {
-
-    justify-content: space-between; /* Distribute content evenly within rows */
-    align-items: center; /* Align content vertically within rows */
-    margin-bottom: 10px; /* Add spacing between rows */
-  }`;
 
   return (
     <div>
-      <style>{styles}</style>
+      <style></style>
       {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
           <p>Loading...</p>

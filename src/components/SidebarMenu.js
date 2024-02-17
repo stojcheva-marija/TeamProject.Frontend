@@ -5,9 +5,9 @@ import { setSelectedFilters } from '../app/productsSlice';
 import { useNavigate } from 'react-router-dom';
 import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
 import { NavLink, useLocation } from 'react-router-dom';
+import "./styles/SidebarMenu.css"
 
-
-const SidebarMenu = () => {
+const MySidebarMenu = () => {
   const [isNavOpen, setNavOpen] = useState(false);
   const [isBuyDropdownOpen, setBuyDropdownOpen] = useState(false);
   const [isFemaleSubmenuOpen, setFemaleSubmenuOpen] = useState(false);
@@ -19,6 +19,7 @@ const SidebarMenu = () => {
   const location = useLocation(); 
 
   const toggleNav = () => {
+    console.log('Toggling nav');
     setNavOpen(!isNavOpen);
     setBuyDropdownOpen(false);
     setFemaleSubmenuOpen(false);
@@ -84,101 +85,8 @@ const SidebarMenu = () => {
     closeSideMenu();
   }, [location]);
 
-  const styles = `
-
-  .sidebar-menu {
-    position: relative;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
-
-  .sidebar-toggle {
-    cursor: pointer;
-    font-size: 24px;
-    padding: 10px;
-    background-color: transparent;
-    color: ${isNavOpen ? 'inherit' : '#000000'};
-    font-weight: bold;
-  }
-
-  .sidebar-toggle.open {
-    border-bottom: none;
-  }
-
-  .sidenav {
-    height: 100%;
-    width: 300px; 
-    position: fixed;
-    top: 0;
-    left: ${isNavOpen ? '0' : '-400px'};
-    background-color: #F3D395;
-    overflow-x: hidden;
-    transition: left 0.5s;
-    padding-top: 60px;
-    border: 2.5px solid black;
-    z-index: 2;
-  }
-
-    .sidenav .rewear-logo {
-      color: ${isNavOpen ? '#000000' : 'inherit'}; 
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .sidenav:not(.open) .rewear-logo:before {
-      content: none;
-    }
-
-    .sidenav a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 25px;
-      color: #818181;
-      display: block;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .sidenav a,
-    .dropdown-btn {
-      padding: 6px 8px 6px 16px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #000000;
-      display: block;
-      border: none;
-      background: none;
-      width: 100%;
-      text-align: left;
-      outline: none;
-    }
-
-    .sidenav .closebtn {
-      position: absolute;
-      top: 5px;
-      right: 10px; 
-      font-size: 36px;
-      font-weight: bold; 
-      cursor: pointer;
-    }
-
-    .sidenav a:hover,
-    .sidenav .closebtn:hover {
-      cursor: pointer;
-    }
-
-    .dropdown-icon {
-      cursor: pointer;
-    }
-    .sidenav.open {
-      z-index: 3; }
-      
-  `;
-
   return (
     <div className="sidebar-menu">
-      <style>{styles}</style>
       <span className={`sidebar-toggle ${isNavOpen ? 'open' : ''}`} onClick={toggleNav}>
         &#9776; <span className="rewear-logo">ReWear</span>
       </span>
@@ -369,4 +277,4 @@ const SidebarMenu = () => {
   );
 };
 
-export default SidebarMenu;
+export default MySidebarMenu;

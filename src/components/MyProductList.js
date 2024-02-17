@@ -6,6 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import ProductEdit from './ProductEdit';
 import { EditProduct, DeleteProduct } from '../services/products';
+import "./styles/MyProductList.css"
 
 const MyProducts = () => {
   const dispatch = useDispatch();
@@ -43,21 +44,10 @@ const ListRow = ({ product, dispatch }) => {
     setItemToDelete(null);
   };
 
-  const styles = `
-
-.sold-product {
-  opacity: 0.6; /* Reduce opacity for sold products */
-}
-
-.sold-message {
-  color: red;
-  font-weight: bold;
-}
-  `;
+ 
 
   return (
         <div>
-          <style>{styles}</style>
       {isEditing ? (
         <ProductEdit product={product} onSave={handleSave} onCancel={() => setIsEditing(false)} />
       ) : (

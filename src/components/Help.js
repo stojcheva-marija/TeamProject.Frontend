@@ -1,62 +1,9 @@
 import React, { useState } from 'react';
+import "./styles/Help.css"
 
 const Help = () => {
 
   const [activeIndex, setActiveIndex] = useState(null);
-
-    const styles=`
-    
-        .custom-font {
-          font-family: 'Tangerine';
-          font-weight: bold;
-          font-size: 3rem;
-        }
-  
-    
-        .content {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-    
-        .content .card {
-          width: 50rem;
-          opacity: 1;
-          background-color: rgba(255, 255, 255, 0.7);
-        }
-    
-        .card-body h5,
-        .card-body a {
-          color: #000000;
-          opacity: 1;
-        }
-    
-        .arrow-icon {
-          font-size: 12px;
-          margin-left: 10px;
-        }
-        
-        .faq-page {
-          padding: 10px; /* Add padding to the question container */
-          transition: background-color 0.4s; /* Add transition for smoother effect */
-        }
-        
-        .faq-page.active {
-          background-color: #C2A4C8; /* Light gray background for the active question */
-        }
-        
-        .faq-body {
-          display: block;
-          overflow: hidden;
-          background-color: #F3D395;
-          color: #000;
-          padding: 10px;
-          margin-top: 10px;
-          border-radius: 5px;
-        }
-    
-          `;
 
           const questions = [
             'How can I make an account?',
@@ -87,7 +34,6 @@ const Help = () => {
 
           return (
             <div className="wrapper">
-              <style>{styles}</style>
               <div className="content">
                 <div className="card text-center">
                   <div className="card-body d-flex flex-column justify-content-center align-items-center">

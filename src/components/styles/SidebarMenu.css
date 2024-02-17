@@ -1,0 +1,91 @@
+
+.sidebar-menu {
+  position: relative;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.sidebar-toggle {
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.sidebar-toggle.open {
+  border-bottom: none;
+}
+
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: -400px;
+  background-color: #AD84B5;
+  overflow-x: hidden;
+  transition: left 0.5s;
+  padding-top: 60px;
+  border: 2.5px solid black;
+  z-index: 2;
+}
+
+.sidebar-toggle.open + .sidenav {
+  left: 0;
+}
+
+.sidenav .rewear-logo {
+  color: black; 
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.sidenav:not(.open) .rewear-logo:before {
+  content: none;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.sidenav a,
+.dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #000000;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  outline: none;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 5px;
+  right: 10px; 
+  font-size: 36px;
+  font-weight: bold; 
+  cursor: pointer;
+}
+
+.sidenav a:hover,
+.sidenav .closebtn:hover {
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  cursor: pointer;
+}
+.sidenav.open {
+  z-index: 3; }

@@ -3,6 +3,7 @@ import { Button, Modal, Form, Row, Col, FormControl, FormLabel, OverlayTrigger, 
 import { useSelector, useDispatch } from 'react-redux';
 import { GetProductSubcategories, GetProductSizes, GetProductConditions, GetProductSex } from '../services/products';
 import { CompactPicker } from 'react-color';
+import "./styles/ProductEdit.css"
 
 const ProductEdit = ({ product, onSave, onCancel }) => {
   const [editedProduct, setEditedProduct] = useState(product);
@@ -75,38 +76,11 @@ const ProductEdit = ({ product, onSave, onCancel }) => {
     setShowColorPicker(false);
   };
 
-  const styles = `
-
-.input-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.input-field label {
-  flex: 1;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.input-field input,
-.input-field select {
-  flex: 2;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.wider-modal .modal-dialog {
-  max-width: 70%; /* Adjust the width as needed */
-  margin-top: 100px;
-}
-
-`;
+ 
 
   return (
     <Modal show={true} onHide={onCancel} className="wider-modal">
-      <style>{styles}</style>
+      <style></style>
       <Modal.Header closeButton>
         <Modal.Title>Edit Product</Modal.Title>
       </Modal.Header>
