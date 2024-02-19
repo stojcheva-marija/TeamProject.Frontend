@@ -1,7 +1,7 @@
 import { setProducts,setProductSubcategories, deleteProduct, 
     editProduct,setProductSizes, newProduct, newProductError, 
     setProductsError, editProductError,setMyProducts,
-    deleteProductError, addToCart, addToCartError, setProductTypes, addToFavourites ,setProductConditions, setProductSex, addToFavouritesError } from '../app/productsSlice';
+    deleteProductError, addToCart,addToRented,addToRentedError, addToCartError, setProductTypes, addToFavourites ,setProductConditions, setProductSex, addToFavouritesError } from '../app/productsSlice';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
@@ -134,6 +134,16 @@ export const AddToFavourites = async (dispatch, product, email) => {
         dispatch(addToFavourites(product));
     } catch {
         dispatch(addToFavouritesError())
+    }
+}
+
+export const AddToRented = async (dispatch, product, email) => {
+    try {
+        // api call
+        await axiosInstance.post('/AddToRented', {product, email});
+        dispatch(addToRented(product));
+    } catch {
+        dispatch(addToRentedError())
     }
 }
 

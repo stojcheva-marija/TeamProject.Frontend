@@ -6,9 +6,11 @@ export const editProductError = createAction('editProductError');
 export const deleteProductError = createAction('deleteProductError');
 export const addToCartError = createAction('addToCartError');
 export const addToFavouritesError = createAction('addToFavouritesError');
+export const addToRentedError = createAction('addToRentedError');
 export const setShoppingCartError = createAction('setShoppingCartError');
 export const deleteFromShoppingCartError = createAction('deleteFromShoppingCartError');
 export const deleteFromFavouritesError = createAction('deleteFromFavouritesCartError');
+export const deleteFromRentedError = createAction('deleteFromRentedError');
 
 export const productsSlice = createSlice({
     name: 'products',
@@ -17,6 +19,7 @@ export const productsSlice = createSlice({
         myProducts: [],
         cart : [],
         favourites: [],
+        rented: [],
         productTypes:[],
         productSizes:[],
         productSubcategories:[],
@@ -74,6 +77,9 @@ export const productsSlice = createSlice({
         addToFavourites: (state, action) => {
             return {...state, favourites: [action.payload,...state.favourites]};
         },
+        addToRented: (state, action) => {
+            return {...state, rented: [action.payload,...state.favourites]};
+        },
         setShoppingCart: (state, action) => {
             const products = action.payload.productsInShoppingCart.map(p => p.product);
             return {...state, cart: [...products], totalPrice: action.payload.totalPrice};
@@ -91,6 +97,14 @@ export const productsSlice = createSlice({
             const favourites = state.favourites.filter(f => f.id!== action.payload.id); 
             return {...state, favourites :[...favourites]};
         },
+        setRented: (state, action) => {
+            const products = action.payload.map(p => p.product);
+            return {...state, rented: [...products]};
+        },
+        deleteFromRented : (state, action) => {
+            const rented = state.rented.filter(f => f.id!== action.payload.id); 
+            return {...state, rented :[...rented]};
+        },
         clearCart: (state) => {
             state.cart = [];
             state.totalPrice = 0;
@@ -106,7 +120,7 @@ export const productsSlice = createSlice({
     }
 });
 
-export const { setProducts, newProduct, editProduct,
+export const { setProducts, newProduct, editProduct, addToRented, setRented, deleteFromRented,
      deleteProduct, addToCart, setShoppingCart,setProductSizes, setProductSex, setSelectedFilters,
       deleteFromShoppingCart, setProductTypes,setProductSubcategories, setMyProducts, setFavourites, deleteFromFavourites, addToFavourites, clearCart, setProductConditions } = productsSlice.actions;
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AddToCart, GetProduct, AddToFavourites } from '../services/products';
+import { AddToCart, GetProduct, AddToFavourites, AddToRented } from '../services/products';
 import { Nav, OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedFilters } from '../app/productsSlice';
+import { addToRented, setSelectedFilters } from '../app/productsSlice';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck, faTruckFast, faRotateLeft, faBox, faArrowLeft  } from '@fortawesome/free-solid-svg-icons';
@@ -71,6 +71,18 @@ const ProductDetails = () => {
       AddToFavourites(dispatch, product, email);
     }
   };
+
+  const handleAddToRented = () => {
+    if (!isLoggedIn) {
+      // Redirect to signin page and store the current location
+      navigate('/signin', { state: { from: location } });
+    } else {
+      // Add item to favorites
+      AddToRented(dispatch, product, email);
+    }
+  };
+
+  
 
   const handleAddToCart = () => {
     if (!isLoggedIn) {
@@ -253,7 +265,11 @@ const ProductDetails = () => {
                 <span onClick={handleAddToFavorites} style={{ cursor: 'pointer' }}>
                   <i className="fa fa-heart"></i>
                 </span>
+                
               </OverlayTrigger>
+              <span onClick={handleAddToRented} style={{ cursor: 'pointer' }}>
+                  <i className="fa fa-heart"></i>
+                </span>
               </div>
             </>
 
