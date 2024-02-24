@@ -21,6 +21,7 @@ import AboutUs from './components/AboutUs';
 import NotImplemented from './components/NotImplemented';
 import ProductDetails from './components/ProductDetails';
 import Help from './components/Help';
+import MyRented from './components/Rented';
 
 const App = () => {
   const isLoggedIn = useSelector((state) => state.authenticationSlice.isLoggedIn);
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/myOrders" element={isLoggedIn ? <MyOrders /> : <SignInPage />} />
           <Route path= "/products" element={<ProductList/>}/>
           <Route path="/aboutus" element={<AboutUs/>}/>
+          <Route path="/rented" element={<MyRented/>}/>
           <Route path="/help" element={<Help/>}/>
           <Route path="/notImplemented" element={<NotImplemented />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
